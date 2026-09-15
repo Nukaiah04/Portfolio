@@ -195,7 +195,7 @@ class HeroSection extends StatelessWidget {
                           color: Theme.of(context).colorScheme.surface,
                           alignment: Alignment.center,
                           child: Text(
-                            "YS",
+                            "YN",
                             style: TextStyle(
                               fontSize: isMobile ? 54 : 80,
                               fontWeight: FontWeight.bold,
