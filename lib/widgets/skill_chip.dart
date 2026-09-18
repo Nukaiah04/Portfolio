@@ -16,7 +16,7 @@ class _SkillChipState extends State<SkillChip> {
     final lower = skill.toLowerCase();
 
     if (lower.contains('docker')) {
-      return (Icons.layers_rounded, const Color(0xFF0EA5E9));
+      return (Icons.layers_rounded, const Color(0xFF38BDF8));
     }
     if (lower.contains('kubernetes') || lower.contains('gke')) {
       return (Icons.hub_rounded, const Color(0xFF38BDF8));
@@ -27,8 +27,11 @@ class _SkillChipState extends State<SkillChip> {
     if (lower.contains('google cloud') || lower.contains('gcp')) {
       return (Icons.cloud_rounded, const Color(0xFF38BDF8));
     }
-    if (lower.contains('cloud build') || lower.contains('actions') || lower.contains('jenkins') || lower.contains('ci/cd')) {
-      return (Icons.sync_alt_rounded, const Color(0xFF22C55E));
+    if (lower.contains('cloud build') ||
+        lower.contains('actions') ||
+        lower.contains('jenkins') ||
+        lower.contains('ci/cd')) {
+      return (Icons.sync_alt_rounded, const Color(0xFF34D399));
     }
     if (lower.contains('cloud run') || lower.contains('compute engine')) {
       return (Icons.dns_rounded, const Color(0xFF60A5FA));
@@ -36,8 +39,13 @@ class _SkillChipState extends State<SkillChip> {
     if (lower.contains('artifact') || lower.contains('secret manager')) {
       return (Icons.lock_rounded, const Color(0xFFFBBF24));
     }
-    if (lower.contains('iam') || lower.contains('security') || lower.contains('firewall') || lower.contains('trivy')) {
-      return (Icons.shield_rounded, const Color(0xFFF43F5E));
+    if (lower.contains('iam')) {
+      return (Icons.shield_rounded, const Color(0xFF818CF8));
+    }
+    if (lower.contains('security') ||
+        lower.contains('firewall') ||
+        lower.contains('trivy')) {
+      return (Icons.shield_rounded, const Color(0xFFF87171));
     }
     if (lower.contains('sonarqube')) {
       return (Icons.verified_user_rounded, const Color(0xFF38BDF8));
@@ -57,7 +65,7 @@ class _SkillChipState extends State<SkillChip> {
     if (lower.contains('nginx')) {
       return (Icons.swap_horiz_rounded, const Color(0xFF4ADE80));
     }
-    if (lower.contains('postgres')) {
+    if (lower.contains('postgres') || lower.contains('redis')) {
       return (Icons.storage_rounded, const Color(0xFF60A5FA));
     }
     if (lower.contains('network') || lower.contains('vpc') || lower.contains('subnet') || lower.contains('cidr') || lower.contains('routing') || lower.contains('nat') || lower.contains('load balanc')) {

@@ -36,6 +36,7 @@ class SkillsSection extends StatelessWidget {
     final primaryColor = Theme.of(context).colorScheme.primary;
 
     return Container(
+      height: double.infinity,
       padding: const EdgeInsets.all(22),
       decoration: BoxDecoration(
         color: isDark ? const Color(0xFF111827) : Colors.white,
@@ -114,9 +115,9 @@ class SkillsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // 90px top padding ensures ample clearance from sticky navbar
+    // 120px top padding ensures ample clearance so sticky header never clips cards
     return Container(
-      padding: const EdgeInsets.only(top: 90, bottom: 60),
+      padding: const EdgeInsets.only(top: 120, bottom: 80),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

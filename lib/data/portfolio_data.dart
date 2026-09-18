@@ -71,6 +71,9 @@ class PortfolioData {
     "Web, Databases & Tools": [
       "Nginx",
       "PostgreSQL",
+      "Redis",
+      "Docker Hub",
+      "Git & GitHub CLI",
       "VS Code",
       "Postman",
     ],
