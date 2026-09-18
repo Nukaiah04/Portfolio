@@ -66,6 +66,24 @@ class _SkillChipState extends State<SkillChip> {
     if (lower.contains('tcp') || lower.contains('dns') || lower.contains('http') || lower.contains('ssh') || lower.contains('ssl') || lower.contains('protocol') || lower.contains('port')) {
       return (Icons.wifi_tethering_rounded, const Color(0xFF818CF8));
     }
+    if (lower.contains('python')) {
+      return (Icons.code_rounded, const Color(0xFF38BDF8));
+    }
+    if (lower.contains('yaml')) {
+      return (Icons.data_object_rounded, const Color(0xFFA855F7));
+    }
+    if (lower.contains('vault') || lower.contains('secret')) {
+      return (Icons.lock_rounded, const Color(0xFFFBBF24));
+    }
+    if (lower.contains('load balanc')) {
+      return (Icons.balance_rounded, const Color(0xFF38BDF8));
+    }
+    if (lower.contains('dns')) {
+      return (Icons.dns_rounded, const Color(0xFF818CF8));
+    }
+    if (lower.contains('ssl') || lower.contains('tls') || lower.contains('cert')) {
+      return (Icons.verified_rounded, const Color(0xFF10B981));
+    }
     if (lower.contains('vs code')) {
       return (Icons.laptop_chromebook_rounded, const Color(0xFF38BDF8));
     }

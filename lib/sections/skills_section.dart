@@ -8,23 +8,22 @@ class SkillsSection extends StatelessWidget {
 
   IconData _getCategoryIcon(String category) {
     final lower = category.toLowerCase();
-    if (lower.contains('cloud')) return Icons.cloud_rounded;
-    if (lower.contains('infrastructure')) return Icons.architecture_rounded;
+    if (lower.contains('cloud platforms')) return Icons.cloud_rounded;
+    if (lower.contains('infrastructure') || lower.contains('security')) {
+      return Icons.architecture_rounded;
+    }
     if (lower.contains('container')) return Icons.layers_rounded;
-    if (lower.contains('ci/cd')) return Icons.sync_alt_rounded;
-    if (lower.contains('version')) return Icons.alt_route_rounded;
-    if (lower.contains('operating') || lower.contains('scripting')) {
-      return Icons.terminal_rounded;
+    if (lower.contains('ci/cd') || lower.contains('automation')) {
+      return Icons.sync_alt_rounded;
     }
-    if (lower.contains('quality') || lower.contains('security')) {
-      return Icons.shield_rounded;
-    }
-    if (lower.contains('monitoring')) return Icons.insights_rounded;
-    if (lower.contains('web') || lower.contains('database')) {
-      return Icons.storage_rounded;
+    if (lower.contains('scripting')) return Icons.terminal_rounded;
+    if (lower.contains('monitoring') || lower.contains('observability')) {
+      return Icons.insights_rounded;
     }
     if (lower.contains('networking')) return Icons.lan_rounded;
-    if (lower.contains('tools')) return Icons.handyman_rounded;
+    if (lower.contains('web') || lower.contains('database') || lower.contains('tools')) {
+      return Icons.storage_rounded;
+    }
     return Icons.folder_rounded;
   }
 
@@ -37,8 +36,7 @@ class SkillsSection extends StatelessWidget {
     final primaryColor = Theme.of(context).colorScheme.primary;
 
     return Container(
-      margin: const EdgeInsets.only(bottom: 20),
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(22),
       decoration: BoxDecoration(
         color: isDark ? const Color(0xFF111827) : Colors.white,
         borderRadius: BorderRadius.circular(16),
@@ -76,7 +74,7 @@ class SkillsSection extends StatelessWidget {
                 child: Text(
                   category,
                   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                        fontSize: 17,
+                        fontSize: 16.5,
                         fontWeight: FontWeight.bold,
                         color: isDark ? Colors.white : const Color(0xFF0F172A),
                       ),
@@ -103,7 +101,7 @@ class SkillsSection extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 18),
           Wrap(
             spacing: 8,
             runSpacing: 10,
@@ -116,7 +114,7 @@ class SkillsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // 90px top padding ensures the section has ample clearance from the sticky 70px navbar
+    // 90px top padding ensures ample clearance from sticky navbar
     return Container(
       padding: const EdgeInsets.only(top: 90, bottom: 60),
       child: Column(
@@ -124,7 +122,7 @@ class SkillsSection extends StatelessWidget {
         children: [
           const SectionTitle(title: "Technical Skills"),
           Text(
-            "Technologies, cloud platforms, and DevOps tooling I use to architect, automate, and monitor production systems.",
+            "Hands-on cloud platforms, infrastructure as code, CI/CD automation, and observability tooling I use in production.",
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                   height: 1.5,
                   color: Theme.of(context).textTheme.bodyMedium?.color,
@@ -135,72 +133,62 @@ class SkillsSection extends StatelessWidget {
             builder: (context, constraints) {
               final isMultiColumn = constraints.maxWidth >= 768;
 
-              // Divide categories evenly to fill the screen across columns without empty space
+              // Row pairings designed for thematic harmony and equal visual balance
+              final pairs = [
+                ("Cloud Platforms (GCP)", "Containers & Orchestration"),
+                ("CI/CD & DevOps Automation", "Infrastructure as Code & Security"),
+                ("Scripting & Automation", "Monitoring & Observability"),
+                ("Cloud Networking", "Web, Databases & Tools"),
+              ];
+
               if (!isMultiColumn) {
-                // Mobile single-column
+                // Mobile layout: single vertical card column
                 return Column(
                   children: PortfolioData.skills.entries.map((entry) {
-                    return _buildCategoryCard(
-                      context,
-                      entry.key,
-                      entry.value,
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 20),
+                      child: _buildCategoryCard(
+                        context,
+                        entry.key,
+                        entry.value,
+                      ),
                     );
                   }).toList(),
                 );
               }
 
-              // Multi-column balanced grid
-              final entries = PortfolioData.skills.entries.toList();
-              final col1Entries = <MapEntry<String, List<String>>>[];
-              final col2Entries = <MapEntry<String, List<String>>>[];
+              // Desktop layout: Pairs wrapped in IntrinsicHeight for guaranteed EQUAL card heights in each row
+              return Column(
+                children: pairs.map((pair) {
+                  final skills1 = PortfolioData.skills[pair.$1] ?? [];
+                  final skills2 = PortfolioData.skills[pair.$2] ?? [];
 
-              // Distribute logically:
-              // Left: Cloud, Containers, IaC, CI/CD, Version Control, Tools
-              // Right: Networking, Monitoring, OS/Scripting, Security, Web/DB
-              final col1Keys = {
-                "Cloud (GCP)",
-                "Containers & Orchestration",
-                "Infrastructure as Code",
-                "CI/CD",
-                "Version Control",
-                "Development Tools",
-              };
-
-              for (var entry in entries) {
-                if (col1Keys.contains(entry.key)) {
-                  col1Entries.add(entry);
-                } else {
-                  col2Entries.add(entry);
-                }
-              }
-
-              return Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    child: Column(
-                      children: col1Entries.map((entry) {
-                        return _buildCategoryCard(
-                          context,
-                          entry.key,
-                          entry.value,
-                        );
-                      }).toList(),
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 24),
+                    child: IntrinsicHeight(
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Expanded(
+                            child: _buildCategoryCard(
+                              context,
+                              pair.$1,
+                              skills1,
+                            ),
+                          ),
+                          const SizedBox(width: 24),
+                          Expanded(
+                            child: _buildCategoryCard(
+                              context,
+                              pair.$2,
+                              skills2,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  const SizedBox(width: 24),
-                  Expanded(
-                    child: Column(
-                      children: col2Entries.map((entry) {
-                        return _buildCategoryCard(
-                          context,
-                          entry.key,
-                          entry.value,
-                        );
-                      }).toList(),
-                    ),
-                  ),
-                ],
+                  );
+                }).toList(),
               );
             },
           ),
