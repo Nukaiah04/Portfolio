@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> {
         context,
         duration: const Duration(milliseconds: 600),
         curve: Curves.easeInOutCubic,
-        alignment: 0.05,
+        alignment: 0.0,
       );
     }
   }
