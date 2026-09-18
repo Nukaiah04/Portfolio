@@ -9,7 +9,15 @@ class HeroSection extends StatelessWidget {
   const HeroSection({super.key, this.onContactTap});
 
   Future<void> _launch(String urlString) async {
-    final uri = Uri.parse(urlString);
+    final trimmed = urlString.trim();
+    if (trimmed.isEmpty) return;
+    final formatted = (trimmed.startsWith('http://') ||
+            trimmed.startsWith('https://') ||
+            trimmed.startsWith('mailto:') ||
+            trimmed.startsWith('tel:'))
+        ? trimmed
+        : 'https://$trimmed';
+    final uri = Uri.parse(formatted);
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri);
     }

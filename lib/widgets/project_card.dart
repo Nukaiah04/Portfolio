@@ -44,25 +44,33 @@ class ProjectCard extends StatelessWidget {
                       ),
                 ),
               ),
-              IconButton(
-                icon: const Icon(Icons.open_in_new),
-                onPressed: () async {
-                  final url = Uri.parse(project['link']);
-                  if (await canLaunchUrl(url)) {
-                    await launchUrl(url);
-                  }
-                },
-                tooltip: 'View Project',
-              )
+              if (project['link'] != null &&
+                  project['link'].toString().trim().isNotEmpty)
+                IconButton(
+                  icon: const Icon(Icons.open_in_new),
+                  onPressed: () async {
+                    final linkStr = project['link'].toString().trim();
+                    final url = Uri.parse(
+                      linkStr.startsWith('http') ? linkStr : 'https://$linkStr',
+                    );
+                    if (await canLaunchUrl(url)) {
+                      await launchUrl(url);
+                    }
+                  },
+                  tooltip: 'View Project',
+                ),
             ],
           ),
-          const SizedBox(height: 8),
-          Text(
-            project['duration'],
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  fontWeight: FontWeight.w500,
-                ),
-          ),
+          if (project['duration'] != null &&
+              project['duration'].toString().trim().isNotEmpty) ...[
+            const SizedBox(height: 8),
+            Text(
+              project['duration'],
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    fontWeight: FontWeight.w500,
+                  ),
+            ),
+          ],
           const SizedBox(height: 16),
           Text(
             project['description'],

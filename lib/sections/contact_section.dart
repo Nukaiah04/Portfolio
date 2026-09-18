@@ -8,7 +8,15 @@ class ContactSection extends StatelessWidget {
   const ContactSection({super.key});
 
   Future<void> _launch(String urlString) async {
-    final uri = Uri.parse(urlString);
+    final trimmed = urlString.trim();
+    if (trimmed.isEmpty) return;
+    final formatted = (trimmed.startsWith('http://') ||
+            trimmed.startsWith('https://') ||
+            trimmed.startsWith('mailto:') ||
+            trimmed.startsWith('tel:'))
+        ? trimmed
+        : 'https://$trimmed';
+    final uri = Uri.parse(formatted);
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri);
     }
@@ -26,7 +34,7 @@ class ContactSection extends StatelessWidget {
         children: [
           const SectionTitle(title: "Contact Details"),
           Text(
-            "I'm currently open to Full Stack Developer & Mobile Developer roles. Feel free to reach out directly through any of the channels below!",
+            "I'm currently open to DevOps Engineer, Cloud Infrastructure, and SRE roles. Feel free to reach out directly through any of the channels below!",
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                   height: 1.6,
                   color: Theme.of(context).textTheme.bodyMedium?.color,

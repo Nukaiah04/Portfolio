@@ -4,7 +4,8 @@ class PortfolioData {
   static const String location = "Hyderabad, India";
   static const String email = "yalagalanukaiah14@gmail.com";
   static const String phone = "+91 89785 11783";
-  static const String linkedin = "linkedin.com/in/yalagala-nukaiah-6a5557323/";
+  static const String linkedin =
+      "https://www.linkedin.com/in/yalagala-nukaiah-6a5557323/";
   static const String github = "https://github.com/Nukaiah04";
   static const String profileImage = "assets/me.jpeg";
   static const String summary =
@@ -132,7 +133,7 @@ class PortfolioData {
         "Granted Artifact Registry Reader IAM role to the VM's service account and opened a VPC firewall rule, enabling secure image pulls and public application access on port 8000.",
         "Resolved 6 distinct release issues — including permission errors, IAM authentication scopes, repository misconfiguration, and port mismatches — achieving a 100% success rate on subsequent deployments.",
       ],
-      "link": "https://github.com/yalagala-nukaiah",
+      "link": "https://github.com/Nukaiah04",
     },
     {
       "name": "Kubernetes Application Deployment on GKE",
@@ -159,7 +160,7 @@ class PortfolioData {
         "Standardized Docker image tagging and versioning conventions across the registry, reducing rollback time to under 5 minutes whenever a release needed to be reverted.",
         "Instrumented pipeline stages and application health checks with 20+ custom metrics, feeding a shared team dashboard for release visibility.",
       ],
-      "link": "https://github.com/yalagala-nukaiah",
+      "link": "https://github.com/Nukaiah04",
     },
   ];
 
