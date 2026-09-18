@@ -270,46 +270,53 @@ class _HomePageState extends State<HomePage> {
               ),
             )
           : null,
-      body: SingleChildScrollView(
-        controller: _scrollController,
-        padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: Center(
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 1100),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  key: _heroKey,
-                  child: HeroSection(
-                    onContactTap: () => _scrollToSection(_contactKey),
-                  ),
-                ),
-                SizedBox(key: _skillsKey, child: const SkillsSection()),
-                SizedBox(key: _experienceKey, child: const ExperienceSection()),
-                SizedBox(key: _projectsKey, child: const ProjectsSection()),
-                SizedBox(key: _educationKey, child: const EducationSection()),
-                SizedBox(key: _contactKey, child: const ContactSection()),
-                const SizedBox(height: 60),
-
-                // Footer
-                Divider(color: Theme.of(context).dividerColor.withOpacity(0.1)),
-                const SizedBox(height: 24),
-                Center(
-                  child: Padding(
-                    padding: const EdgeInsets.only(bottom: 32.0),
-                    child: Text(
-                      "© ${DateTime.now().year} ${PortfolioData.name} · Built with Flutter Web ♥",
-                      style: Theme.of(
-                        context,
-                      ).textTheme.bodyMedium?.copyWith(fontSize: 13),
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          return SingleChildScrollView(
+            controller: _scrollController,
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            child: Align(
+              alignment: Alignment.topCenter,
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 1100),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      key: _heroKey,
+                      child: HeroSection(
+                        onContactTap: () => _scrollToSection(_contactKey),
+                      ),
                     ),
-                  ),
+                    SizedBox(key: _skillsKey, child: const SkillsSection()),
+                    SizedBox(key: _experienceKey, child: const ExperienceSection()),
+                    SizedBox(key: _projectsKey, child: const ProjectsSection()),
+                    SizedBox(key: _educationKey, child: const EducationSection()),
+                    SizedBox(key: _contactKey, child: const ContactSection()),
+                    const SizedBox(height: 60),
+
+                    // Footer
+                    Divider(
+                      color: Theme.of(context).dividerColor.withOpacity(0.1),
+                    ),
+                    const SizedBox(height: 24),
+                    Center(
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 32.0),
+                        child: Text(
+                          "© ${DateTime.now().year} ${PortfolioData.name} · Built with Flutter Web ♥",
+                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            fontSize: 13,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
-          ),
-        ),
+          );
+        },
       ),
     );
   }
