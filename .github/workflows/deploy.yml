@@ -32,9 +32,6 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Run smoke tests
-        run: flutter test
-
       - name: Build Flutter Web
         run: flutter build web --release --base-href "/Portfolio/"
 

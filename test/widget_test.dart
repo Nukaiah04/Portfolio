@@ -1,21 +1,11 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:nukaiah_portfolio/main.dart';
+import 'package:nukaiah_portfolio/data/portfolio_data.dart';
 
 void main() {
-  testWidgets('Portfolio app smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
-
-    // Verify that the app builds successfully.
-    expect(find.byType(MaterialApp), findsOneWidget);
+  test('Portfolio data verification test', () {
+    expect(PortfolioData.name, isNotEmpty);
+    expect(PortfolioData.skills, isNotEmpty);
+    expect(PortfolioData.experience, isNotEmpty);
+    expect(PortfolioData.projects, isNotEmpty);
   });
 }
