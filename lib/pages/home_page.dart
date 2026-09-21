@@ -274,7 +274,7 @@ class _HomePageState extends State<HomePage> {
         builder: (context, constraints) {
           return SingleChildScrollView(
             controller: _scrollController,
-            padding: const EdgeInsets.symmetric(horizontal: 24),
+            padding: EdgeInsets.symmetric(horizontal: isMobile ? 16 : 24),
             child: Align(
               alignment: Alignment.topCenter,
               child: ConstrainedBox(

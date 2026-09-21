@@ -30,13 +30,14 @@ class SkillsSection extends StatelessWidget {
   Widget _buildCategoryCard(
     BuildContext context,
     String category,
-    List<String> skills,
-  ) {
+    List<String> skills, {
+    bool fillHeight = false,
+  }) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final primaryColor = Theme.of(context).colorScheme.primary;
 
     return Container(
-      height: double.infinity,
+      height: fillHeight ? double.infinity : null,
       padding: const EdgeInsets.all(22),
       decoration: BoxDecoration(
         color: isDark ? const Color(0xFF111827) : Colors.white,
@@ -175,6 +176,7 @@ class SkillsSection extends StatelessWidget {
                               context,
                               pair.$1,
                               skills1,
+                              fillHeight: true,
                             ),
                           ),
                           const SizedBox(width: 24),
@@ -183,6 +185,7 @@ class SkillsSection extends StatelessWidget {
                               context,
                               pair.$2,
                               skills2,
+                              fillHeight: true,
                             ),
                           ),
                         ],
